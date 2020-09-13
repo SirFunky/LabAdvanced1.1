@@ -19,7 +19,7 @@ namespace LabAdvanced1._1
             Mentor lena = new Mentor("Nej",3,3, 30000, "Lena", "Java", "ja",0);
             Mentor bengt = new Mentor("Ja", 4, 4, 30000, "bengt", "C#", "ja",2);
 
-            SortedDictionary<string, Mentor> listaProgrammerare = new SortedDictionary<string, Mentor>(); //Valde sorted dictonary för dess funktion att både ha en key och ett objekt parat, mest för möjligheten till vidare utveckling senare då det kan vara bra att ha tillgång till keys för indexering osv.
+            SortedDictionary<string, Mentor> listaProgrammerare = new SortedDictionary<string, Mentor>(); //Valde sorted dictonary för dess funktion att både ha en key och ett objekt parat, mest för möjligheten till vidare utveckling senare då det kan vara bra att ha tillgång till keys för sortering och indexering osv.
             listaProgrammerare.Add("1", eva);
             listaProgrammerare.Add("2", sven);
             listaProgrammerare.Add("3", lena);
@@ -38,7 +38,7 @@ namespace LabAdvanced1._1
 
                 totalMonthlySalary += kv.Value.MonthlySalary;
             }
-            Console.WriteLine("total månads lön för programmerare" + totalMonthlySalary);
+            Console.WriteLine("total månads lön för programmerare " + totalMonthlySalary);
             
 
             bool test = true;
@@ -56,14 +56,15 @@ namespace LabAdvanced1._1
                     switch (menu)
                     {
                         case "s":
-                            Console.WriteLine(eva.EmployeName + " " + eva.MonthlySalary);
+                            Console.WriteLine("Inte implementerat än!");
                             break;
 
                         case "u":
-                            Console.WriteLine(sven);
+                            Console.WriteLine("Inte implementerat än!");
                             break;
 
                         case "d":
+                            Console.WriteLine("Inte implementerat än!");
                             break;
 
                         case "e":
@@ -75,9 +76,8 @@ namespace LabAdvanced1._1
                             break;
                     }                                    
                 }
-                catch (Exception e)
+                catch (UnknownInput e)
                 {
-                    Console.WriteLine("Unknown error please restart and try again.");
                 }
             }
 

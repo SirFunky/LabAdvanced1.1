@@ -35,7 +35,7 @@ namespace ClassLibraryLab1._2
             return " Payroll Number: " + PayRollNumber + " Monyhly Salary: " + MonthlySalary + " Employe Name: " + EmployeName + " Known Programing Languaege: " + KnownProgramingLanguege + " Has Mentor: " + HasMentor + " Mentee Number: " +  MenteeNumber;
         }
     }
-    public class Mentor : Programmer
+    public class Mentor : Programmer , IComparable<Mentor>
     {
         public string hasMentee { get; set; }
         public int mentorNumber { get; set; }
@@ -53,6 +53,10 @@ namespace ClassLibraryLab1._2
             return base.ToString() + " Has mentee: " +hasMentee + " Mentor number: " + mentorNumber;
         }
 
+        public int CompareTo(Mentor other)
+        {
+            return this.EmployeName.CompareTo(other.EmployeName);
+        }
     }
 
     public static class company
@@ -78,6 +82,25 @@ namespace ClassLibraryLab1._2
             {
                 return MonthlySalary;
             }
+        }
+    }
+    public class UnknownInput : Exception
+    {
+        public UnknownInput()
+        {
+            Console.WriteLine("Unknown error please restart and try again.");
+        }
+
+        public UnknownInput(string message)
+            : base(message)
+        {
+            Console.WriteLine("Unknown error please restart and try again.");
+        }
+
+        public UnknownInput(string message, Exception inner)
+            : base(message, inner)
+        {
+            Console.WriteLine("Unknown error please restart and try again.");
         }
     }
 }
