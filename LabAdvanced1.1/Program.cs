@@ -10,24 +10,32 @@ namespace LabAdvanced1._1
 {
     class Program
     {
+        public delegate double KostnadsKalkyl(double MonthlySalary, string KnownProgramingLanguege, string hasMentee);
         static void Main(string[] args)
         {
-            double totalMonthlySalary = 0;
-            Programmer sven = new Programmer(1,30000,"Sven","C#","Nej");
-            Programmer eva = new Programmer(1, 30000, "Eva", "C#", "ja");
-            Programmer lena = new Programmer(1, 30000, "Lena", "Java", "ja");
-            Programmer bengt = new Programmer(1, 30000, "bengt", "C#", "ja");
+            double totalMonthlySalary = 0;           
+            Mentor sven = new Mentor ("Nej",1,1,30000,"Sven","C#","Nej",0);
+            Mentor eva = new Mentor("Ja", 2, 2, 30000, "Eva", "C#", "ja",4);
+            Mentor lena = new Mentor("Nej",3,3, 30000, "Lena", "Java", "ja",0);
+            Mentor bengt = new Mentor("Ja", 4, 4, 30000, "bengt", "C#", "ja",2);
 
-            SortedDictionary<string, Programmer> listaProgrammerare = new SortedDictionary<string, Programmer>(); //Valde sorted dictonary för dess funktion att både ha en key och ett objekt parat, mest för möjligheten till vidare utveckling senare då det kan vara bra att ha tillgång till keys för indexering osv.
+            SortedDictionary<string, Mentor> listaProgrammerare = new SortedDictionary<string, Mentor>(); //Valde sorted dictonary för dess funktion att både ha en key och ett objekt parat, mest för möjligheten till vidare utveckling senare då det kan vara bra att ha tillgång till keys för indexering osv.
             listaProgrammerare.Add("1", eva);
             listaProgrammerare.Add("2", sven);
             listaProgrammerare.Add("3", lena);
             listaProgrammerare.Add("4", bengt);
             
 
-            foreach (KeyValuePair<string,Programmer> kv in listaProgrammerare)
+            foreach (KeyValuePair<string, Mentor> kv in listaProgrammerare)
             {
-                Console.WriteLine(kv.Key + " " + kv.Value);
+                string hasMentee = kv.Value.hasMentee;
+                string KnownProgramingLanguege = kv.Value.KnownProgramingLanguege;
+                double MonthlySalary = kv.Value.MonthlySalary;
+
+                KostnadsKalkyl kal1 = new KostnadsKalkyl(company.Payincrease);                
+                kv.Value.MonthlySalary = kal1(MonthlySalary, KnownProgramingLanguege, hasMentee);
+                Console.WriteLine(kv.Key + " " + kv.Value);                
+
                 totalMonthlySalary += kv.Value.MonthlySalary;
             }
             Console.WriteLine("total månads lön för programmerare" + totalMonthlySalary);

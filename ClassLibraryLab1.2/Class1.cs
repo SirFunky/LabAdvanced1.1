@@ -10,64 +10,66 @@ namespace ClassLibraryLab1._2
     {
         string ToString();
     }
-    public class Programmer : Employee
+    public abstract class Programmer : Employee
     {
         public int PayRollNumber { get; set; }
         public double MonthlySalary { get; set; }
         public string EmployeName { get; set; }
         public string KnownProgramingLanguege { get; set; }
         public string HasMentor { get; set; }
-        
-        public Programmer(int PayRollNumber, double MonthlySalary, string EmployeName, string KnownProgramingLanguege, string HasMentor)
+        public int MenteeNumber { get; set; }
+
+        public Programmer(int PayRollNumber, double MonthlySalary, string EmployeName, string KnownProgramingLanguege, string HasMentor, int MenteeNumber)
         {
             this.PayRollNumber = PayRollNumber;
             this.MonthlySalary = MonthlySalary;
             this.EmployeName = EmployeName;
             this.KnownProgramingLanguege = KnownProgramingLanguege;
             this.HasMentor = HasMentor;
+            this.MenteeNumber = MenteeNumber;
 
         }
         
         public override String ToString()
         {
-            return PayRollNumber + " " + MonthlySalary + " " + EmployeName + " " + KnownProgramingLanguege;
+            return " Payroll Number: " + PayRollNumber + " Monyhly Salary: " + MonthlySalary + " Employe Name: " + EmployeName + " Known Programing Languaege: " + KnownProgramingLanguege + " Has Mentor: " + HasMentor + " Mentee Number: " +  MenteeNumber;
         }
     }
-    class mentor : Programmer
+    public class Mentor : Programmer
     {
         public string hasMentee { get; set; }
         public int mentorNumber { get; set; }
         public string isMentor { get; set; }
 
-        public mentor (string hasMentee, int mentorNumber, string isMentor, int PayRollNumber, double MonthlySalary, string EmployeName, string KnownProgramingLanguege, string HasMentor) : base( PayRollNumber, MonthlySalary, EmployeName, KnownProgramingLanguege, HasMentor)
+        public Mentor (string hasMentee, int mentorNumber, int PayRollNumber, double MonthlySalary, string EmployeName, string KnownProgramingLanguege, string HasMentor, int MenteeNumber) : base( PayRollNumber, MonthlySalary, EmployeName, KnownProgramingLanguege, HasMentor, mentorNumber)
         {
-            this.isMentor = isMentor;
+
             this.mentorNumber = mentorNumber;
             this.hasMentee = hasMentee;
 
         }
         public override string ToString()
         {
-            return base.ToString() + " " +hasMentee + " " + mentorNumber + " " + isMentor;
+            return base.ToString() + " Has mentee: " +hasMentee + " Mentor number: " + mentorNumber;
         }
 
     }
 
-    static class company
+    public static class company
     {
         public static double Payincrease(double MonthlySalary, string KnownProgramingLanguege, string hasMentee)
         {
-            if (KnownProgramingLanguege == "c#" && hasMentee == "Yes")
+            if (KnownProgramingLanguege == "C#" && hasMentee == "Ja")
             {
                 double löneBonus = 1.15;
                 return MonthlySalary * löneBonus;
             }
-            else if (KnownProgramingLanguege == "c#")
+            else if (KnownProgramingLanguege == "C#")
             {
                 double löneBonus = 1.1;
                 return MonthlySalary * löneBonus;
             }
-            else if (hasMentee == "Yes")
+            else if (hasMentee == "Ja")
             {
                 double löneBonus = 1.05;
                 return MonthlySalary * löneBonus;
